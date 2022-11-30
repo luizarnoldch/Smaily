@@ -1,0 +1,12 @@
+{
+	"trailingComma": "es5",
+	"tabWidth": 2,
+	"semi": false,
+	"singleQuote": true,
+	"jsxSingleQuote": true,
+	"useTabs": true,
+	"arrowParens": "avoid",
+	"quoteProps": "as-needed",
+	"bracketSpacing": true,
+	"bracketSameLine": false
+}
