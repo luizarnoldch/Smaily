@@ -51,7 +51,7 @@ const Table = ({ data, type }) => {
 	return (
 		<table className='container  mt-10 shadow-md rounded-md'>
 			<TableHead data={data} />
-			<TableBody data={data} type={type}/>
+			<TableBody data={data} type={type} />
 			<TableFoot />
 		</table>
 	)

@@ -60,7 +60,7 @@ const Clientes = () => {
 				onClick={() => dispatch({ type: types.ChangeFormClientState })}
 				className='bg-blue-500 rounded-md hover:bg-blue-200 active:bg-blue-400 my-8 px-4 py-2'
 			>
-				Agregar Servicio
+				Agregar Cliente
 			</button>
 			{visible && (
 				<div className={`transition-all ease-in-out duration-300`}>

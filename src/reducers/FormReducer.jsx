@@ -76,5 +76,6 @@ const FormReducer = (state, { type, payload }) => {
 			return state
 	}
 }
+
 export { initialForm, types }
 export default FormReducer

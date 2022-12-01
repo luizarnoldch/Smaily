@@ -1,53 +1,15 @@
 import { useReducer } from 'react'
-
-const types = {
-	onChangeService: 'on-change-service',
-	onChangeDate: 'on-change-date',
-	onChangeDNI: 'on-change-dni',
-	onChangePet: 'on-change-pet',
-}
-
-const reducerForm = (state, { type, payload }) => {
-	switch (type) {
-		case types.onChangeService:
-			return {
-				...state,
-				service: payload
-			}
-		case types.onChangeDate:
-			return {
-				...state,
-				date_service: payload
-			}
-		case types.onChangeDNI:
-			return {
-				...state,
-				dni_client: payload
-			}
-		case types.onChangePet:
-			return {
-				...state,
-				pet_client: payload
-			}
-		default:
-			return state
-	}
-}
-
-const initialForm = {
-	service: '',
-	date_service: '',
-	dni_client: '',
-	pet_client: '',
-}
+import FormServiceReducer, {
+	types,
+	initialServiceForm,
+} from '../../reducers/FormServiceReducer'
 
 const FormServices = () => {
-	const [state, dispatch] = useReducer(reducerForm, initialForm)
-
+	const [state, dispatch] = useReducer(FormServiceReducer, initialServiceForm)
 	const HandleSubmit = e => {
 		e.preventDefault()
-
 		console.log(state)
+		dispatch({ type: types.initialState })
 	}
 
 	return (
@@ -61,7 +23,12 @@ const FormServices = () => {
 							type='text'
 							value={state.service}
 							placeholder='Servicio'
-							onChange={(e) => dispatch({ type: types.onChangeService, payload: e.target.value})}
+							onChange={e =>
+								dispatch({
+									type: types.onChangeService,
+									payload: e.target.value,
+								})
+							}
 							className='w-full border border-black/30 rounded-md px-4 py-2'
 						/>
 					</label>
@@ -83,7 +50,9 @@ const FormServices = () => {
 							type='datetime-local'
 							value={state.date_service}
 							placeholder='nombre'
-							onChange={(e) => dispatch({ type: types.onChangeDate, payload: e.target.value})}
+							onChange={e =>
+								dispatch({ type: types.onChangeDate, payload: e.target.value })
+							}
 							className='w-full border border-black/30 rounded-md px-4 py-2'
 						/>
 					</label>
@@ -96,7 +65,9 @@ const FormServices = () => {
 						type='text'
 						value={state.dni_client}
 						placeholder='DNI'
-						onChange={(e) => dispatch({ type: types.onChangeDNI, payload: e.target.value})}
+						onChange={e =>
+							dispatch({ type: types.onChangeDNI, payload: e.target.value })
+						}
 						className='w-full border border-black/30 rounded-md px-4 py-2'
 					/>
 				</div>
@@ -113,7 +84,9 @@ const FormServices = () => {
 					<h3>Elija mascota del cliente</h3>
 					<select
 						value={state.pet_client}
-						onChange={(e) => dispatch({ type: types.onChangePet, payload: e.target.value})}
+						onChange={e =>
+							dispatch({ type: types.onChangePet, payload: e.target.value })
+						}
 						className='w-full border border-black/30 rounded-md px-4 py-2'
 					>
 						<option value=''>eliga la mascota</option>
