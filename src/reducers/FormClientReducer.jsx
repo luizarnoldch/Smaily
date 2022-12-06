@@ -3,14 +3,15 @@ const types = {
 	onChangeLastName: 'on-change-last-name',
 	onChangeDNI: 'on-change-dni',
 	onChangeNumber: 'on-change-number',
+	onSetInitial: 'on-set-initial',
 	initialState: 'initialState',
 }
 
 const initialClientForm = {
-	name_client: '',
-	last_name_client: '',
-	dni_client: '',
-	number_client: '',
+	nombre_cliente: '',
+	apellido_cliente: '',
+	dni_cliente: '',
+	telefono_cliente: '',
 }
 
 const FormClientReducer = (state, { type, payload }) => {
@@ -18,23 +19,25 @@ const FormClientReducer = (state, { type, payload }) => {
 		case types.onChangeName:
 			return {
 				...state,
-				name_client: payload,
+				nombre_cliente: payload,
 			}
 		case types.onChangeLastName:
 			return {
 				...state,
-				last_name_client: payload,
+				apellido_cliente: payload,
 			}
 		case types.onChangeDNI:
 			return {
 				...state,
-				dni_client: payload,
+				dni_cliente: payload,
 			}
 		case types.onChangeNumber:
 			return {
 				...state,
-				number_client: payload,
+				telefono_cliente: payload,
 			}
+		case types.onSetInitial:
+			return payload
 		case types.initialState:
 			return initialClientForm
 		default:

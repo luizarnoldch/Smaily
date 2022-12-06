@@ -5,31 +5,34 @@ import {
 import { types } from '../../reducers/FormReducer'
 import { AiOutlineEdit } from 'react-icons/ai'
 
-const EditButton = ({ type, item }) => {
+const EditButton = ({ reFetch, type, item }) => {
 	const dispatch = useFormServiceDispatch()
-
 	const handleEdit = () => {
 		switch (type) {
-			case 'service':
+			case 'servicio':
 				return dispatch({
 					type: types.ChangeIDService,
 					payload: item.servicio,
 				})
-			case 'client':
+			case 'cliente':
 				return dispatch({
 					type: types.ChangeIDClient,
-					payload: item.cliente,
+					payload: item.id_cliente,
 				})
-			case 'pet':
+			case 'mascota':
 				return dispatch({
 					type: types.ChangeIDPet,
 					payload: item.mascota,
+				})
+			case 'tratamiento':
+				return dispatch({
+					type: types.ChangeIDMaster,
+					payload: item.tipo_servicio,
 				})
 			default:
 				return
 		}
 	}
-
 	return (
 		<button
 			type='button'

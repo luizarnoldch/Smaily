@@ -5,6 +5,8 @@ const types = {
 	ChangeIDClient: 'change-id-client',
 	ChangeFormPetState: 'change-form-pet-state',
 	ChangeIDPet: 'change-id-pet',
+	ChangeFormMasterState: 'change-form-master-state',
+	ChangeIDMaster: 'change-id-master',
 }
 
 const initialForm = {
@@ -17,6 +19,10 @@ const initialForm = {
 		id: null,
 	},
 	pet: {
+		visible: false,
+		id: null,
+	},
+	master: {
 		visible: false,
 		id: null,
 	},
@@ -68,6 +74,22 @@ const FormReducer = (state, { type, payload }) => {
 			return {
 				...state,
 				pet: {
+					visible: true,
+					id: payload,
+				},
+			}
+		case types.ChangeFormMasterState:
+			return {
+				...state,
+				master: {
+					visible: !state.master.visible,
+					id: null,
+				},
+			}
+		case types.ChangeIDMaster:
+			return {
+				...state,
+				master: {
 					visible: true,
 					id: payload,
 				},

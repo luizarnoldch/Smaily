@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom'
 
 const routes = [
 	{
+		label: 'Master',
+		route: '/master',
+	},
+	{
 		label: 'Home',
 		route: '/',
 	},

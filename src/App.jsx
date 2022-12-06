@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Clientes from './pages/Clientes'
 import Horarios from './pages/Horarios'
 import Mascotas from './pages/Mascotas'
+import Master from './pages/Master'
 import FormContextProvider from './context/FormContext'
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
 			{
 				path: '/horario',
 				element: <Horarios />,
+			},
+			{
+				path: '/master',
+				element: <Master />,
 			},
 		],
 	},

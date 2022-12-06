@@ -76,7 +76,7 @@ const Home = () => {
 			<button
 				type='button'
 				onClick={() => dispatch({ type: types.ChangeFormServiceState })}
-				className='bg-blue-500 rounded-md hover:bg-blue-200 active:bg-blue-400 my-8 px-4 py-2'
+				className='bg-blue-500 rounded-md hover:bg-blue-200 active:bg-blue-400 my-8 px-4 py-2 font-bold'
 			>
 				Agregar Servicio
 			</button>
@@ -87,7 +87,7 @@ const Home = () => {
 			)}
 
 			<hr />
-			<Table data={data} type={'service'} />
+			<Table data={data} type={'servicio'} />
 		</div>
 	)
 }

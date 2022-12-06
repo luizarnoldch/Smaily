@@ -1,17 +1,31 @@
-import {
-	useFormServiceState,
-	useFormServiceDispatch,
-} from '../../context/FormContext'
-import { types } from '../../reducers/FormReducer'
+import { useReducer } from 'react'
+import { useFormServiceState } from '../../context/FormContext'
+import FormServiceReducer, {
+	types,
+	initialServiceForm,
+} from '../../reducers/FormServiceReducer'
 
 const FormServices = () => {
 	const store = useFormServiceState()
-	const dispatch = useFormServiceDispatch()
 	const { service } = store
 	const { id } = service
 
+	/*
+	const initialServiceForm = {
+		service: '',
+		date_service: '',
+		dni_client: '',
+		pet_client: '',
+	}
+	*/
+
+	// initialServiceForm  <- Enviar datos
+
+	const [state, dispatch] = useReducer(FormServiceReducer, initialServiceForm)
 	const HandleSubmit = e => {
 		e.preventDefault()
+		console.log(state)
+		dispatch({ type: types.initialState })
 	}
 
 	return (
@@ -19,11 +33,19 @@ const FormServices = () => {
 			<form onSubmit={e => HandleSubmit(e)} className='grid grid-cols-3 gap-10'>
 				{/* Tipo de Servicio */}
 				<div className=''>
-					<label htmlFor='' className='flex flex-col'>
+					<label className='flex flex-col'>
 						<h3>Ingrese el Tipo de Servicio</h3>
 						<input
+							autoFocus
 							type='text'
 							placeholder='Servicio'
+							value={state.service}
+							onChange={e =>
+								dispatch({
+									type: types.onChangeService,
+									payload: e.target.value,
+								})
+							}
 							className='w-full border border-black/30 rounded-md px-4 py-2'
 						/>
 					</label>
@@ -39,11 +61,15 @@ const FormServices = () => {
 
 				{/* Fecha del servicio */}
 				<div className=''>
-					<label htmlFor='' className='flex flex-col'>
+					<label className='flex flex-col'>
 						<h3>Ingrese la fecha del Servicio</h3>
 						<input
 							type='datetime-local'
 							placeholder='nombre'
+							value={state.date_service}
+							onChange={e =>
+								dispatch({ type: types.onChangeDate, payload: e.target.value })
+							}
 							className='w-full border border-black/30 rounded-md px-4 py-2'
 						/>
 					</label>
@@ -51,12 +77,18 @@ const FormServices = () => {
 
 				{/* Cliente */}
 				<div className=''>
-					<h3>DNI de cliente</h3>
-					<input
-						type='text'
-						placeholder='DNI'
-						className='w-full border border-black/30 rounded-md px-4 py-2'
-					/>
+					<label className='flex flex-col'>
+						<h3>DNI de cliente</h3>
+						<input
+							type='text'
+							placeholder='DNI'
+							value={state.dni_client}
+							onChange={e =>
+								dispatch({ type: types.onChangeDNI, payload: e.target.value })
+							}
+							className='w-full border border-black/30 rounded-md px-4 py-2'
+						/>
+					</label>
 				</div>
 
 				<div>
@@ -70,8 +102,10 @@ const FormServices = () => {
 				<div className=''>
 					<h3>Elija mascota del cliente</h3>
 					<select
-						name=''
-						id=''
+						value={state.pet_client}
+						onChange={e =>
+							dispatch({ type: types.onChangePet, payload: e.target.value })
+						}
 						className='w-full border border-black/30 rounded-md px-4 py-2'
 					>
 						<option value=''></option>

@@ -1,4 +1,6 @@
+import axios from 'axios'
 import { useReducer } from 'react'
+import { useNavigate } from 'react-router-dom'
 import FormClientReducer, {
 	types,
 	initialClientForm,
@@ -6,10 +8,17 @@ import FormClientReducer, {
 
 const FormClient = () => {
 	const [state, dispatch] = useReducer(FormClientReducer, initialClientForm)
+	const navigate = useNavigate()
 	const HandleSubmit = e => {
 		e.preventDefault()
-		console.log(state)
+		const postData = async () => {
+			const url = `http://localhost:4000/cliente`
+			await axios.post(url, state)
+		}
+		postData()
+		//console.log(state)
 		dispatch({ type: types.initialState })
+		navigate(0)
 	}
 
 	return (
@@ -20,8 +29,9 @@ const FormClient = () => {
 					<label htmlFor='' className='flex flex-col'>
 						<h3>Nombre(s) </h3>
 						<input
+							autoFocus
 							type='text'
-							value={state.name_client}
+							value={state.nombre_cliente}
 							placeholder='Nombre(s)'
 							onChange={e =>
 								dispatch({ type: types.onChangeName, payload: e.target.value })
@@ -36,7 +46,7 @@ const FormClient = () => {
 					<h3>Apellido(s)</h3>
 					<input
 						type='text'
-						value={state.last_name_client}
+						value={state.apellido_cliente}
 						placeholder='Apellidos(s)'
 						onChange={e =>
 							dispatch({
@@ -54,7 +64,7 @@ const FormClient = () => {
 					<input
 						type='text'
 						placeholder='DNI'
-						value={state.dni_client}
+						value={state.dni_cliente}
 						onChange={e =>
 							dispatch({ type: types.onChangeDNI, payload: e.target.value })
 						}
@@ -68,7 +78,7 @@ const FormClient = () => {
 					<input
 						type='text'
 						placeholder='999 999 999'
-						value={state.number_client}
+						value={state.telefono_cliente}
 						onChange={e =>
 							dispatch({ type: types.onChangeNumber, payload: e.target.value })
 						}

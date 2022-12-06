@@ -20,9 +20,10 @@ const FormServices = () => {
 					<label htmlFor='' className='flex flex-col'>
 						<h3>Ingrese el Tipo de Servicio</h3>
 						<input
+							autoFocus
 							type='text'
-							value={state.service}
 							placeholder='Servicio'
+							value={state.service}
 							onChange={e =>
 								dispatch({
 									type: types.onChangeService,
@@ -48,8 +49,8 @@ const FormServices = () => {
 						<h3>Ingrese la fecha del Servicio</h3>
 						<input
 							type='datetime-local'
-							value={state.date_service}
 							placeholder='nombre'
+							value={state.date_service}
 							onChange={e =>
 								dispatch({ type: types.onChangeDate, payload: e.target.value })
 							}
@@ -63,8 +64,8 @@ const FormServices = () => {
 					<h3>DNI de cliente</h3>
 					<input
 						type='text'
-						value={state.dni_client}
 						placeholder='DNI'
+						value={state.dni_client}
 						onChange={e =>
 							dispatch({ type: types.onChangeDNI, payload: e.target.value })
 						}

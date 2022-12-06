@@ -1,6 +1,6 @@
 import { BsTrash } from 'react-icons/bs'
 
-const DeleteButton = ({ type }) => {
+const DeleteButton = ({ reFetch, type, item }) => {
 	return (
 		<button
 			type='button'
